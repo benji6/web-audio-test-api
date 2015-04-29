@@ -1,5 +1,3 @@
-"use strict";
-
 describe("ChannelMergerNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("ChannelMergerNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.ChannelMergerNode();
+        return new global.ChannelMergerNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -29,7 +27,7 @@ describe("ChannelMergerNode", function() {
 
       assert.deepEqual(node.toJSON(), {
         name: "ChannelMergerNode",
-        inputs: []
+        inputs: [],
       });
     });
   });

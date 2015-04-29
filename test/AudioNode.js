@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("AudioNode", function() {
       assert(node instanceof global.EventTarget);
 
       assert.throws(function() {
-        global.AudioNode();
+        return new global.AudioNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -207,7 +205,7 @@ describe("AudioNode", function() {
 
       assert.deepEqual(node.toJSON(), {
         name: "AudioNode",
-        inputs: []
+        inputs: [],
       });
 
       audioContext.VERBOSE_JSON = true;
@@ -219,7 +217,7 @@ describe("AudioNode", function() {
         channelCount: 2,
         channelCountMode: "max",
         channelInterpretation: "speakers",
-        inputs: []
+        inputs: [],
       });
     });
   });
@@ -247,12 +245,12 @@ describe("AudioNode", function() {
               {
                 name: "AudioNode#baz",
                 inputs: [
-                  "<circular:AudioNode#foo>"
-                ]
-              }
-            ]
-          }
-        ]
+                  "<circular:AudioNode#foo>",
+                ],
+              },
+            ],
+          },
+        ],
       });
     });
 
@@ -275,9 +273,9 @@ describe("AudioNode", function() {
         inputs: [
           {
             name: "AudioNode#bar",
-            inputs: []
-          }
-        ]
+            inputs: [],
+          },
+        ],
       });
     });
   });

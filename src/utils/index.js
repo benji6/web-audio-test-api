@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = {};
 
 _.NOP = /* istanbul ignore next */ function() {};

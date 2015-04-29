@@ -1,5 +1,3 @@
-"use strict";
-
 describe("MediaStream", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
 
@@ -11,7 +9,7 @@ describe("MediaStream", function() {
       assert(stream instanceof global.EventTarget);
 
       assert.throws(function() {
-        global.MediaStream();
+        return new global.MediaStream();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });

@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var AudioNode = require("./AudioNode");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -16,7 +14,7 @@ function AudioDestinationNode(context) {
     numberOfOutputs : 0,
     channelCount    : 2,
     channelCountMode: "explicit",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var maxChannelCount = 2;

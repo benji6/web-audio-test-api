@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -17,7 +15,7 @@ function DynamicsCompressorNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "explicit",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var threshold = new AudioParam(this, "threshold", -24, -100, 0);

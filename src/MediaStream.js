@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var EventTarget = require("./EventTarget");

@@ -1,5 +1,3 @@
-"use strict";
-
 var Inspector = require("../../src/utils/Inspector");
 
 describe("utils/Inspector", function() {

@@ -1,5 +1,3 @@
-"use strict";
-
 describe("ChannelSplitterNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("ChannelSplitterNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.ChannelSplitterNode();
+        return new global.ChannelSplitterNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -29,7 +27,7 @@ describe("ChannelSplitterNode", function() {
 
       assert.deepEqual(node.toJSON(), {
         name: "ChannelSplitterNode",
-        inputs: []
+        inputs: [],
       });
     });
   });

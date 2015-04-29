@@ -1,8 +1,54 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
+
+function insertEvent(_this, event) {
+  var time = event.time;
+  var events = _this.$events;
+  var replace = 0;
+  var i, imax = events.length;
+
+  for (i = 0; i < imax; ++i) {
+    if (events[i].time === time && events[i].type === event.type) {
+      replace = 1;
+      break;
+    }
+
+    if (events[i].time > time) {
+      break;
+    }
+  }
+
+  events.splice(i, replace, event);
+}
+
+function linTo(v, v0, v1, t, t0, t1) {
+  var dt = (t - t0) / (t1 - t0);
+  return (1 - dt) * v0 + dt * v1;
+}
+
+function expTo(v, v0, v1, t, t0, t1) {
+  var dt = (t - t0) / (t1 - t0);
+  return 0 < v0 && 0 < v1 ? v0 * Math.pow(v1 / v0, dt) : /* istanbul ignore next */ v;
+}
+
+function setTarget(v0, v1, t, t0, timeConstant) {
+  return v1 + (v0 - v1) * Math.exp((t0 - t) / timeConstant);
+}
+
+function setCurveValue(v, t, t0, t1, curve) {
+  var dt = (t - t0) / (t1 - t0);
+
+  if (dt <= 0) {
+    return _.defaults(curve[0], v);
+  }
+
+  if (1 <= dt) {
+    return _.defaults(curve[curve.length - 1], v);
+  }
+
+  return _.defaults(curve[(curve.length * dt)|0], v);
+}
 
 var AudioParamConstructor = function AudioParam() {
   throw new TypeError("Illegal constructor");
@@ -40,7 +86,7 @@ function AudioParam(node, name, defaultValue, minValue, maxValue) {
         throw new TypeError(_.formatter.concat(this, msg));
       }
     },
-    enumerable: true
+    enumerable: true,
   });
 
   Object.defineProperties(this, {
@@ -124,7 +170,7 @@ AudioParamConstructor.prototype.setTargetAtTime = function(target, startTime, ti
     type : "SetTarget",
     value: target,
     time : startTime,
-    timeConstant: timeConstant
+    timeConstant: timeConstant,
   });
 };
 
@@ -143,7 +189,7 @@ AudioParamConstructor.prototype.setValueCurveAtTime = function(values, startTime
     type : "SetValueCurve",
     time : startTime,
     duration: duration,
-    curve: values
+    curve: values,
   });
 };
 
@@ -228,53 +274,5 @@ AudioParam.prototype.$process = function(inNumSamples, tick) {
     });
   }
 };
-
-function insertEvent(_this, event) {
-  var time = event.time;
-  var events = _this.$events;
-  var replace = 0;
-  var i, imax = events.length;
-
-  for (i = 0; i < imax; ++i) {
-    if (events[i].time === time && events[i].type === event.type) {
-      replace = 1;
-      break;
-    }
-
-    if (events[i].time > time) {
-      break;
-    }
-  }
-
-  events.splice(i, replace, event);
-}
-
-function linTo(v, v0, v1, t, t0, t1) {
-  var dt = (t - t0) / (t1 - t0);
-  return (1 - dt) * v0 + dt * v1;
-}
-
-function expTo(v, v0, v1, t, t0, t1) {
-  var dt = (t - t0) / (t1 - t0);
-  return 0 < v0 && 0 < v1 ? v0 * Math.pow(v1 / v0, dt) : /* istanbul ignore next */ v;
-}
-
-function setTarget(v0, v1, t, t0, timeConstant) {
-  return v1 + (v0 - v1) * Math.exp((t0 - t) / timeConstant);
-}
-
-function setCurveValue(v, t, t0, t1, curve) {
-  var dt = (t - t0) / (t1 - t0);
-
-  if (dt <= 0) {
-    return _.defaults(curve[0], v);
-  }
-
-  if (1 <= dt) {
-    return _.defaults(curve[curve.length - 1], v);
-  }
-
-  return _.defaults(curve[(curve.length * dt)|0], v);
-}
 
 module.exports = WebAudioTestAPI.AudioParam = AudioParam;

@@ -1,5 +1,3 @@
-"use strict";
-
 describe("ConvolverNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("ConvolverNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.ConvolverNode();
+        return new global.ConvolverNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -71,7 +69,7 @@ describe("ConvolverNode", function() {
       assert.deepEqual(node.toJSON(), {
         name: "ConvolverNode",
         normalize: true,
-        inputs: []
+        inputs: [],
       });
     });
   });

@@ -1,5 +1,3 @@
-"use strict";
-
 describe("PannerNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("PannerNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.PannerNode();
+        return new global.PannerNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -284,7 +282,7 @@ describe("PannerNode", function() {
         coneInnerAngle: 360,
         coneOuterAngle: 360,
         coneOuterGain: 0,
-        inputs: []
+        inputs: [],
       });
     });
   });

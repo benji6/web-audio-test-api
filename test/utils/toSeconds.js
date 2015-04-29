@@ -1,5 +1,3 @@
-"use strict";
-
 var toSeconds = require("../../src/utils/toSeconds");
 
 describe("utils/toSeconds", function() {

@@ -1,5 +1,3 @@
-"use strict";
-
 var toMicroseconds = require("./toMicroseconds");
 
 function toSeconds(time) {

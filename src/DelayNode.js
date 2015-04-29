@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -17,7 +15,7 @@ function DelayNode(context, maxDelayTime) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var delayTime = new AudioParam(this, "delayTime", 0, 0, maxDelayTime);
@@ -27,12 +25,12 @@ function DelayNode(context, maxDelayTime) {
   });
 
   Object.defineProperties(this, {
-    $maxDelayTime: { value: maxDelayTime }
+    $maxDelayTime: { value: maxDelayTime },
   });
 }
 _.inherits(DelayNode, DelayNodeConstructor);
 
 DelayNode.exports = DelayNodeConstructor;
-DelayNode.jsonAttrs = [ "delayTime"　];
+DelayNode.jsonAttrs = [ "delayTime" ];
 
 module.exports = WebAudioTestAPI.DelayNode = DelayNode;

@@ -1,5 +1,3 @@
-"use strict";
-
 var argsCheck = require("../../src/utils/argsCheck");
 
 describe("utils/argsCheck", function() {

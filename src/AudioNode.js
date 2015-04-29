@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -57,12 +55,6 @@ _.inherits(AudioNode, AudioNodeConstructor);
 AudioNode.exports = AudioNodeConstructor;
 
 AudioNodeConstructor.prototype.connect = function(destination) {
-  var inspector = new Inspector(this, "connect", [
-    { name: "destination", type: "AudioNode | AudioParam", validate: sameContext },
-    { name: "output"     , type: "optional number", validate: checkNumberOfOutput },
-    { name: "input"      , type: "optional number", validate: checkNumberOfInput },
-  ]);
-
   function sameContext(value) {
     if (this.$context !== value.$context) {
       return "cannot connect to a destination belonging to a different audio context";
@@ -81,6 +73,12 @@ AudioNodeConstructor.prototype.connect = function(destination) {
     }
   }
 
+  var inspector = new Inspector(this, "connect", [
+    { name: "destination", type: "AudioNode | AudioParam", validate: sameContext },
+    { name: "output"     , type: "optional number", validate: checkNumberOfOutput },
+    { name: "input"      , type: "optional number", validate: checkNumberOfInput },
+  ]);
+
   inspector.validateArguments(arguments, function(msg) {
     throw new TypeError(inspector.form + "; " + msg);
   });
@@ -94,15 +92,15 @@ AudioNodeConstructor.prototype.connect = function(destination) {
 };
 
 AudioNodeConstructor.prototype.disconnect = function() {
-  var inspector = new Inspector(this, "connect", [
-    { name: "output", type: "optional number", validate: checkNumberOfOutput },
-  ]);
-
   function checkNumberOfOutput(value, name) {
     if (value < 0 || this.numberOfOutputs <= value) {
       return name + " index (" + value + ") exceeds number of outputs (" + this.numberOfOutputs + ")";
     }
   }
+
+  var inspector = new Inspector(this, "connect", [
+    { name: "output", type: "optional number", validate: checkNumberOfOutput },
+  ]);
 
   inspector.validateArguments(arguments, function(msg) {
     throw new TypeError(inspector.form + "; " + msg);

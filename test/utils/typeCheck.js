@@ -1,5 +1,3 @@
-"use strict";
-
 var typeCheck = require("../../src/utils/typeCheck");
 
 describe("utils/type", function() {

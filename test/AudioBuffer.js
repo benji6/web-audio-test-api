@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioBuffer", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -15,7 +13,7 @@ describe("AudioBuffer", function() {
       assert(buf instanceof global.AudioBuffer);
 
       assert.throws(function() {
-        global.AudioBuffer();
+        return new global.AudioBuffer();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -147,14 +145,14 @@ describe("AudioBuffer", function() {
         sampleRate: buf1.sampleRate,
         length: buf1.length,
         duration: buf1.duration,
-        numberOfChannels: buf1.numberOfChannels
+        numberOfChannels: buf1.numberOfChannels,
       });
       assert.deepEqual(buf2.toJSON(), {
         name: "AudioBuffer",
         sampleRate: buf2.sampleRate,
         length: buf2.length,
         duration: buf2.duration,
-        numberOfChannels: buf2.numberOfChannels
+        numberOfChannels: buf2.numberOfChannels,
       });
 
       audioContext.VERBOSE_JSON = true;
@@ -165,7 +163,7 @@ describe("AudioBuffer", function() {
         length: buf1.length,
         duration: buf1.duration,
         numberOfChannels: buf1.numberOfChannels,
-        data: [ dat1 ]
+        data: [ dat1 ],
       });
       assert.deepEqual(buf2.toJSON(), {
         name: "AudioBuffer",
@@ -173,7 +171,7 @@ describe("AudioBuffer", function() {
         length: buf2.length,
         duration: buf2.duration,
         numberOfChannels: buf2.numberOfChannels,
-        data: [ dat2, dat2 ]
+        data: [ dat2, dat2 ],
       });
     });
   });

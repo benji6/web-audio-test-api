@@ -1,5 +1,3 @@
-"use strict";
-
 function typeCheck(value, type) {
   switch (type) {
   case "boolean":

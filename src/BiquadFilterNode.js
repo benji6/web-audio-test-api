@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -20,7 +18,7 @@ function BiquadFilterNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var type = "lowpass";

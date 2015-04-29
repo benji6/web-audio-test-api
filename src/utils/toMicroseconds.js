@@ -1,5 +1,3 @@
-"use strict";
-
 var MIN_VALUE = 0;
 var MAX_VALUE = 24 * 60 * 60 * 1000 * 1000;
 

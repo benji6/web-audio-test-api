@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -16,7 +14,7 @@ function MediaStreamAudioDestinationNode(context) {
     numberOfOutputs : 0,
     channelCount    : 2,
     channelCountMode: "explicit",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 }
 _.inherits(MediaStreamAudioDestinationNode, MediaStreamAudioDestinationNodeConstructor);

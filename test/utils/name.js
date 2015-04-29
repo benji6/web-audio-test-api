@@ -1,5 +1,3 @@
-"use strict";
-
 var name = require("../../src/utils/name");
 
 describe("utils/name", function() {

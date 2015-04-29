@@ -1,5 +1,3 @@
-"use strict";
-
 var argsCheck = require("./argsCheck");
 var formatter = require("./formatter");
 var nth = require("./nth");

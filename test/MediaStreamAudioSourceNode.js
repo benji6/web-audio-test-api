@@ -1,5 +1,3 @@
-"use strict";
-
 describe("MediaStreamAudioSourceNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("MediaStreamAudioSourceNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.MediaStreamAudioSourceNode();
+        return new global.MediaStreamAudioSourceNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -29,7 +27,7 @@ describe("MediaStreamAudioSourceNode", function() {
 
       assert.deepEqual(node.toJSON(), {
         name: "MediaStreamAudioSourceNode",
-        inputs: []
+        inputs: [],
       });
     });
   });

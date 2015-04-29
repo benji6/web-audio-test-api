@@ -1,5 +1,3 @@
-"use strict";
-
 var formatter = require("../../src/utils/formatter");
 
 describe("utils/formatter", function() {

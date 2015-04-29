@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -19,7 +17,7 @@ function AnalyserNode(context) {
     numberOfOutputs : 1,
     channelCount    : 1,
     channelCountMode: "explicit",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var fftSize = 2048;

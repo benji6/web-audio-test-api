@@ -1,5 +1,3 @@
-"use strict";
-
 describe("HTMLElement", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
 
@@ -11,7 +9,7 @@ describe("HTMLElement", function() {
       assert(element instanceof global.Element);
 
       assert.throws(function() {
-        global.HTMLElement();
+        return new global.HTMLElement();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });

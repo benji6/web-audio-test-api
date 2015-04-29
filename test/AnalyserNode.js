@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AnalyserNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("AnalyserNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.AnalyserNode();
+        return new global.AnalyserNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -205,7 +203,7 @@ describe("AnalyserNode", function() {
         minDecibels: -100,
         maxDecibels: 30,
         smoothingTimeConstant: 0.8,
-        inputs: []
+        inputs: [],
       });
     });
   });

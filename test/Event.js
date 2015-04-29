@@ -1,5 +1,3 @@
-"use strict";
-
 describe("Event", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
 

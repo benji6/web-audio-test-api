@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -20,7 +18,7 @@ function PannerNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "clamped-max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var panningModel = "HRTF";
@@ -62,7 +60,7 @@ _.inherits(PannerNode, PannerNodeConstructor);
 PannerNode.exports = PannerNodeConstructor;
 PannerNode.jsonAttrs = [
   "panningModel", "distanceModel", "refDistance", "maxDistance",
-  "rolloffFactor", "coneInnerAngle", "coneOuterAngle", "coneOuterGain"
+  "rolloffFactor", "coneInnerAngle", "coneOuterAngle", "coneOuterGain",
 ];
 
 PannerNodeConstructor.prototype.setPosition = function() {

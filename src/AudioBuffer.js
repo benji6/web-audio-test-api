@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -24,7 +22,7 @@ function AudioBuffer(context, numberOfChannels, length, sampleRate) {
 
   Object.defineProperties(this, {
     $name   : { value: "AudioBuffer" },
-    $context: { value: context }
+    $context: { value: context },
   });
 
   this._data = new Array(numberOfChannels);
@@ -38,7 +36,7 @@ AudioBuffer.exports = AudioBufferConstructor;
 
 AudioBufferConstructor.prototype.getChannelData = function(channel) {
   var inspector = new Inspector(this, "getChannelData", [
-    { name: "channel", type: "number" }
+    { name: "channel", type: "number" },
   ]);
   inspector.validateArguments(arguments, function(msg) {
     throw new TypeError(inspector.form + "; " + msg);
@@ -57,7 +55,7 @@ AudioBuffer.prototype.toJSON = function() {
     sampleRate: this.sampleRate,
     length: this.length,
     duration: this.duration,
-    numberOfChannels: this.numberOfChannels
+    numberOfChannels: this.numberOfChannels,
   };
 
   if (this.$context.VERBOSE_JSON) {

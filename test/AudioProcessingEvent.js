@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioProcessingEvent", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
 
@@ -11,7 +9,7 @@ describe("AudioProcessingEvent", function() {
       assert(event instanceof global.Event);
 
       assert.throws(function() {
-        global.AudioProcessingEvent();
+        return new global.AudioProcessingEvent();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });

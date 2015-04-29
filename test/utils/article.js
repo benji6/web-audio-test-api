@@ -1,5 +1,3 @@
-"use strict";
-
 var article = require("../../src/utils/article");
 
 describe("utils/article", function() {

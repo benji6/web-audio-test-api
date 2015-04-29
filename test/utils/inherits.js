@@ -1,5 +1,3 @@
-"use strict";
-
 var inherits = require("../../src/utils/inherits");
 
 describe("utils/inherits", function() {

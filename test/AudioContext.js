@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioContext", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -14,7 +12,9 @@ describe("AudioContext", function() {
       assert(audioContext instanceof global.EventTarget);
 
       assert.throws(function() {
+        /* eslint-disable */
         global.AudioContext();
+        /*eslint-enable*/
       }, function(e) {
         return e instanceof TypeError && /Failed to construct/.test(e.message);
       });
@@ -376,7 +376,7 @@ describe("AudioContext", function() {
     it("(): object", function() {
       assert.deepEqual(audioContext.toJSON(), {
         name: "AudioDestinationNode",
-        inputs: []
+        inputs: [],
       });
     });
   });
@@ -426,11 +426,11 @@ describe("AudioContext", function() {
             name: "GainNode",
             gain: {
               value: 1,
-              inputs: []
+              inputs: [],
             },
-            inputs: []
-          }
-        ]
+            inputs: [],
+          },
+        ],
       });
 
       audioContext.$processTo(0.125);
@@ -442,7 +442,7 @@ describe("AudioContext", function() {
       assert(audioContext.currentTime === 0);
       assert.deepEqual(audioContext.toJSON(), {
         name: "AudioDestinationNode",
-        inputs: []
+        inputs: [],
       });
     });
   });
@@ -470,7 +470,7 @@ describe("AudioContext", function() {
             name: "GainNode",
             gain: {
               value: 1,
-              inputs: []
+              inputs: [],
             },
             inputs: [
               {
@@ -478,17 +478,17 @@ describe("AudioContext", function() {
                 type: "sine",
                 frequency: {
                   value: 440,
-                  inputs: [ bufSrc.toJSON() ]
+                  inputs: [ bufSrc.toJSON() ],
                 },
                 detune: {
                   value: 0,
-                  inputs: []
+                  inputs: [],
                 },
-                inputs: []
-              }
-            ]
-          }
-        ]
+                inputs: [],
+              },
+            ],
+          },
+        ],
       });
 
       assert(bufSrc.$state === "UNSCHEDULED");

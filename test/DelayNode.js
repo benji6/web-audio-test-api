@@ -1,5 +1,3 @@
-"use strict";
-
 describe("DelayNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("DelayNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.DelayNode();
+        return new global.DelayNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -45,9 +43,9 @@ describe("DelayNode", function() {
         name: "DelayNode",
         delayTime: {
           value: 0,
-          inputs: []
+          inputs: [],
         },
-        inputs: []
+        inputs: [],
       });
     });
   });

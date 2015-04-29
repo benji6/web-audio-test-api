@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var Event = require("./Event");
@@ -13,7 +11,7 @@ function AudioProcessingEvent(node) {
   Event.call(this, "audioprocess", node);
   Object.defineProperties(this, {
     $name: { value: "AudioProcessingEvent" },
-    $node: { value: node }
+    $node: { value: node },
   });
 }
 _.inherits(AudioProcessingEvent, AudioProcessingEventConstructor);

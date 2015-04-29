@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioListener", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -15,7 +13,7 @@ describe("AudioListener", function() {
       assert(listener instanceof global.AudioListener);
 
       assert.throws(function() {
-        global.AudioListener();
+        return new global.AudioListener();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });

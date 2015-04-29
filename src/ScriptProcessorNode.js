@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -18,7 +16,7 @@ function ScriptProcessorNode(context, bufferSize, numberOfInputChannels, numberO
     numberOfOutputs : 1,
     channelCount    : numberOfInputChannels,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var onaudioprocess = null;

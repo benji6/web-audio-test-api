@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioBufferSourceNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("AudioBufferSourceNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.AudioBufferSourceNode();
+        return new global.AudioBufferSourceNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -271,12 +269,12 @@ describe("AudioBufferSourceNode", function() {
         buffer: null,
         playbackRate: {
           value: 1,
-          inputs: []
+          inputs: [],
         },
         loop: false,
         loopStart: 0,
         loopEnd: 0,
-        inputs: []
+        inputs: [],
       });
 
       node.buffer = buf;
@@ -289,12 +287,12 @@ describe("AudioBufferSourceNode", function() {
         buffer: buf.toJSON(),
         playbackRate: {
           value: 1,
-          inputs: []
+          inputs: [],
         },
         loop: true,
         loopStart: 1,
         loopEnd: 2,
-        inputs: []
+        inputs: [],
       });
     });
   });

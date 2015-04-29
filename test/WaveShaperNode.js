@@ -1,5 +1,3 @@
-"use strict";
-
 describe("WaveShaperNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("WaveShaperNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.WaveShaperNode();
+        return new global.WaveShaperNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -78,7 +76,7 @@ describe("WaveShaperNode", function() {
       assert.deepEqual(node.toJSON(), {
         name: "WaveShaperNode",
         oversample: "none",
-        inputs: []
+        inputs: [],
       });
     });
   });

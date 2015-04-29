@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -21,7 +19,7 @@ function AudioListener(context) {
 
   Object.defineProperties(this, {
     $name   : { value: "AudioListener" },
-    $context: { value: context }
+    $context: { value: context },
   });
 }
 _.inherits(AudioListener, AudioListenerConstructor);

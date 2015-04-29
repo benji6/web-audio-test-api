@@ -1,5 +1,3 @@
-"use strict";
-
 describe("BiquadFilterNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("BiquadFilterNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.BiquadFilterNode();
+        return new global.BiquadFilterNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -156,21 +154,21 @@ describe("BiquadFilterNode", function() {
         type: "lowpass",
         frequency: {
           value: 350,
-          inputs: []
+          inputs: [],
         },
         detune: {
           value: 0,
-          inputs: []
+          inputs: [],
         },
         Q: {
           value: 1,
-          inputs: []
+          inputs: [],
         },
         gain: {
           value: 0,
-          inputs: []
+          inputs: [],
         },
-        inputs: []
+        inputs: [],
       });
     });
   });

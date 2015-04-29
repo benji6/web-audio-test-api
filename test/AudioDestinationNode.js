@@ -1,5 +1,3 @@
-"use strict";
-
 describe("AudioDestinationNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("AudioDestinationNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.AudioDestinationNode();
+        return new global.AudioDestinationNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -43,7 +41,7 @@ describe("AudioDestinationNode", function() {
 
       assert.deepEqual(node.toJSON(), {
         name: "AudioDestinationNode",
-        inputs: []
+        inputs: [],
       });
     });
   });

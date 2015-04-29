@@ -1,5 +1,3 @@
-"use strict";
-
 var WebAudioAPI = {};
 
 WebAudioAPI.AnalyserNode = global.AnalyserNode;

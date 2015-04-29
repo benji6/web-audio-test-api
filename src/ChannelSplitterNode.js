@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -16,7 +14,7 @@ function ChannelSplitterNode(context, numberOfOutputs) {
     numberOfOutputs : numberOfOutputs,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 }
 _.inherits(ChannelSplitterNode, ChannelSplitterNodeConstructor);

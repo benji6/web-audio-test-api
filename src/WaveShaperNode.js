@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -18,7 +16,7 @@ function WaveShaperNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var curve = null;

@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -21,7 +19,7 @@ function OscillatorNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var type = "sine";
@@ -45,7 +43,7 @@ function OscillatorNode(context) {
         throw new TypeError(_.formatter.concat(this, msg));
       }
     },
-    enumerable: true
+    enumerable: true,
   });
   _.defineAttribute(this, "frequency", "readonly", frequency, function(msg) {
     throw new TypeError(_.formatter.concat(this, msg));
@@ -61,13 +59,13 @@ function OscillatorNode(context) {
     $state: {
       get: function() {
         return this.$stateAtTime(this.context.currentTime);
-      }
+      },
     },
     $custom: {
       get: function() {
         return this._custom;
-      }
-    }
+      },
+    },
   });
 
   this._type = type;

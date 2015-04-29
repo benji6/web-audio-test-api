@@ -1,5 +1,3 @@
-"use strict";
-
 var typeCheck = require("./typeCheck");
 
 function argsCheck(args, types) {

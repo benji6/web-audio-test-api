@@ -1,5 +1,3 @@
-"use strict";
-
 var WebAudioAPI = require("./WebAudioAPI");
 
 var WebAudioTestAPI = {};

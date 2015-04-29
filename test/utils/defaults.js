@@ -1,5 +1,3 @@
-"use strict";
-
 var defaults = require("../../src/utils/defaults");
 
 describe("utils/defaults", function() {

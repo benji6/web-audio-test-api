@@ -1,5 +1,3 @@
-"use strict";
-
 describe("OscillatorNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("OscillatorNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.OscillatorNode();
+        return new global.OscillatorNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -217,13 +215,13 @@ describe("OscillatorNode", function() {
         type: "sine",
         frequency: {
           value: 440,
-          inputs: []
+          inputs: [],
         },
         detune: {
           value: 0,
-          inputs: []
+          inputs: [],
         },
-        inputs: []
+        inputs: [],
       });
     });
   });

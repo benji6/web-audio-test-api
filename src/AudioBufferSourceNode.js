@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -19,7 +17,7 @@ function AudioBufferSourceNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var buffer = null;
@@ -52,8 +50,8 @@ function AudioBufferSourceNode(context) {
     $state: {
       get: function() {
         return this.$stateAtTime(this.context.currentTime);
-      }
-    }
+      },
+    },
   });
 
   this._startTime = Infinity;
@@ -84,7 +82,7 @@ AudioBufferSourceNodeConstructor.prototype.start = function(when) {
 
 AudioBufferSourceNodeConstructor.prototype.stop = function(when) {
   var inspector = new Inspector(this, "stop", [
-    { name: "when", type: "optional number" }
+    { name: "when", type: "optional number" },
   ]);
 
   inspector.validateArguments(arguments, function(msg) {

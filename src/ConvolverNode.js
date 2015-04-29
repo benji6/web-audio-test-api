@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -16,7 +14,7 @@ function ConvolverNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "clamped-max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var buffer = null;

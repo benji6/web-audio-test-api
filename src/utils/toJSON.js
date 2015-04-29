@@ -1,5 +1,3 @@
-"use strict";
-
 var name = require("./name");
 
 function toJSON(node, func, memo) {

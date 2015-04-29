@@ -1,5 +1,3 @@
-"use strict";
-
 describe("DynamicsCompressorNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("DynamicsCompressorNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.DynamicsCompressorNode();
+        return new global.DynamicsCompressorNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -115,29 +113,29 @@ describe("DynamicsCompressorNode", function() {
         name: "DynamicsCompressorNode",
         threshold: {
           value: -24,
-          inputs: []
+          inputs: [],
         },
         knee: {
           value: 30,
-          inputs: []
+          inputs: [],
         },
         ratio: {
           value: 12,
-          inputs: []
+          inputs: [],
         },
         reduction: {
           value: 0,
-          inputs: []
+          inputs: [],
         },
         attack: {
           value: 0.003,
-          inputs: []
+          inputs: [],
         },
         release: {
           value: 0.25,
-          inputs: []
+          inputs: [],
         },
-        inputs: []
+        inputs: [],
       });
     });
   });

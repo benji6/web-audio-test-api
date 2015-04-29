@@ -1,5 +1,3 @@
-"use strict";
-
 var nth = require("../../src/utils/nth");
 
 describe("utils/nth", function() {

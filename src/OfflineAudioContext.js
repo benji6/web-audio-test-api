@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -50,7 +48,7 @@ function OfflineAudioContext(numberOfChannels, length, sampleRate) {
 
   Object.defineProperties(this, {
     $name   : { value: "OfflineAudioContext" },
-    $context: { value: this }
+    $context: { value: this },
   });
 
   this._microCurrentTime = 0;

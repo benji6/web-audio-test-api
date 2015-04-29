@@ -1,5 +1,3 @@
-"use strict";
-
 /* istanbul ignore else */
 if (!global.WEB_AUDIO_TEST_API_IGNORE) {
   require("./AudioContext");

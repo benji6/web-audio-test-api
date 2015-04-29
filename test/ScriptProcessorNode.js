@@ -1,5 +1,3 @@
-"use strict";
-
 describe("ScriptProcessorNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -102,7 +100,7 @@ describe("ScriptProcessorNode", function() {
 
       assert.deepEqual(node.toJSON(), {
         name: "ScriptProcessorNode",
-        inputs: []
+        inputs: [],
       });
     });
   });

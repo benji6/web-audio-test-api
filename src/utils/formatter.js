@@ -1,5 +1,3 @@
-"use strict";
-
 var article = require("../utils/article");
 var pp = require("../utils/pp");
 
@@ -41,5 +39,5 @@ function concat(instance, msg) {
 module.exports = {
   methodForm: methodForm,
   shouldBeButGot: shouldBeButGot,
-  concat: concat
+  concat: concat,
 };

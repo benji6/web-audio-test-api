@@ -1,5 +1,3 @@
-"use strict";
-
 var toMicroseconds = require("../../src/utils/toMicroseconds");
 
 describe("utils/toMicroseconds", function() {

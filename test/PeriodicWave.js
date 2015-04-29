@@ -1,12 +1,10 @@
-"use strict";
-
 describe("PeriodicWave", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
-  var audioContext;
-
-  beforeEach(function() {
-    audioContext = new WebAudioTestAPI.AudioContext();
-  });
+  // var audioContext;
+  //
+  // beforeEach(function() {
+  //   audioContext = new WebAudioTestAPI.AudioContext();
+  // });
 
   describe("constructor", function() {
     it("()", function() {

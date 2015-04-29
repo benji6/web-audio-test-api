@@ -1,5 +1,3 @@
-"use strict";
-
 describe("GainNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
   var audioContext;
@@ -16,7 +14,7 @@ describe("GainNode", function() {
       assert(node instanceof global.AudioNode);
 
       assert.throws(function() {
-        global.GainNode();
+        return new global.GainNode();
       }, function(e) {
         return e instanceof TypeError && /Illegal constructor/.test(e.message);
       });
@@ -45,9 +43,9 @@ describe("GainNode", function() {
         name: "GainNode",
         gain: {
           value: 1,
-          inputs: []
+          inputs: [],
         },
-        inputs: []
+        inputs: [],
       });
     });
   });

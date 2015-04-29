@@ -1,5 +1,3 @@
-"use strict";
-
 var defineAttribute = require("../../src/utils/defineAttribute");
 
 describe("utils/defineAttribute", function() {

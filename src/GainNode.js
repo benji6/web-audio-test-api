@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
 var AudioNode = require("./AudioNode");
@@ -17,7 +15,7 @@ function GainNode(context) {
     numberOfOutputs : 1,
     channelCount    : 2,
     channelCountMode: "max",
-    channelInterpretation: "speakers"
+    channelInterpretation: "speakers",
   });
 
   var gain = new AudioParam(this, "gain", 1.0, 0.0, 1.0);
@@ -29,6 +27,6 @@ function GainNode(context) {
 _.inherits(GainNode, GainNodeConstructor);
 
 GainNode.exports = GainNodeConstructor;
-GainNode.jsonAttrs = [ "gain"　];
+GainNode.jsonAttrs = [ "gain" ];
 
 module.exports = WebAudioTestAPI.GainNode = GainNode;

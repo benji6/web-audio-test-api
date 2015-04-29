@@ -1,5 +1,3 @@
-"use strict";
-
 var article = require("./article");
 
 function pp(value) {

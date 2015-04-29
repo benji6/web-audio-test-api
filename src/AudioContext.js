@@ -1,5 +1,3 @@
-"use strict";
-
 var _ = require("./utils");
 var Inspector = require("./utils/Inspector");
 var WebAudioTestAPI = require("./WebAudioTestAPI");
@@ -229,16 +227,16 @@ AudioContext.prototype.createOscillator = function() {
 };
 
 AudioContext.prototype.createPeriodicWave = function(real, imag) {
-  var inspector = new Inspector(this, "createPeriodicWave", [
-    { name: "real", type: "Float32Array", validate: over4096 },
-    { name: "imag", type: "Float32Array", validate: over4096 },
-  ]);
-
   function over4096(value, name) {
     if (4096 < value.length) {
       return "length of " + name + " array (" + value.length + ") exceeds allow maximum of 4096";
     }
   }
+
+  var inspector = new Inspector(this, "createPeriodicWave", [
+    { name: "real", type: "Float32Array", validate: over4096 },
+    { name: "imag", type: "Float32Array", validate: over4096 },
+  ]);
 
   inspector.validateArguments(arguments, function(msg) {
     throw new TypeError(inspector.form + "; " + msg);

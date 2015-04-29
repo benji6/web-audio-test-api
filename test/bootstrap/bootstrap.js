@@ -1,5 +1,3 @@
-"use strict";
-
 global.assert = require("power-assert");
 global.sinon = require("sinon");
 global.window = global;
