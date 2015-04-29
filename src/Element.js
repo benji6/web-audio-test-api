@@ -1,17 +1,15 @@
-var _ = require("./utils");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var EventTarget = require("./EventTarget");
+import _ from "./utils";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import EventTarget from "./EventTarget";
 
-/* istanbul ignore else */
-if (typeof global.Element === "undefined") {
-  global.Element = function Element() {
+global.Element = global.Element || class Element extends EventTarget {
+  constructor() {
+    super();
     throw new TypeError("Illegal constructor");
-  };
-  _.inherits(global.Element, EventTarget);
+  }
+};
+
+export default class Element extends _.preventSuper(global.Element) {
 }
 
-function Element() {
-}
-_.inherits(Element, global.Element);
-
-module.exports = WebAudioTestAPI.Element = Element;
+WebAudioTestAPI.Element = Element;

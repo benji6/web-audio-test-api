@@ -1,25 +1,25 @@
-var _ = {};
+import inherits from "./inherits";
+import defaults from "./defaults";
+import article from "./article";
+import name from "./name";
+import preventSuper from "./preventSuper";
+import toJSON from "./toJSON";
+import toMicroseconds from "./toMicroseconds";
+import toSeconds from "./toSeconds";
+import typeCheck from "./typeCheck";
+import formatter from "./formatter";
+import defineAttribute from "./defineAttribute";
 
-_.NOP = /* istanbul ignore next */ function() {};
-
-_.inherits = require("./inherits");
-
-_.defaults = require("./defaults");
-
-_.article = require("./article");
-
-_.name = require("./name");
-
-_.toJSON = require("./toJSON");
-
-_.toMicroseconds = require("./toMicroseconds");
-
-_.toSeconds = require("./toSeconds");
-
-_.typeCheck = require("./typeCheck");
-
-_.formatter = require("./formatter");
-
-_.defineAttribute = require("./defineAttribute");
-
-module.exports = _;
+export default {
+  inherits,
+  defaults,
+  article,
+  name,
+  preventSuper,
+  toJSON,
+  toMicroseconds,
+  toSeconds,
+  typeCheck,
+  formatter,
+  defineAttribute,
+};

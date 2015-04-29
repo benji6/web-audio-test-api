@@ -1,4 +1,4 @@
-function typeCheck(value, type) {
+function _typeCheck(value, type) {
   switch (type) {
   case "boolean":
     return typeof value === "boolean";
@@ -18,9 +18,7 @@ function typeCheck(value, type) {
 
   var matches = /^enum\s*{(.*?)}$/.exec(type);
   if (matches) {
-    return enumCheck(value, matches[1].split(",").map(function(item) {
-      return item.trim();
-    }));
+    return enumCheck(value, matches[1].split(",").map(item => item.trim()));
   }
 
   return false;
@@ -35,8 +33,6 @@ function enumCheck(value, items) {
   });
 }
 
-module.exports = function(value, type) {
-  return type.split("|").some(function(type) {
-    return typeCheck(value, type.trim());
-  });
-};
+export default function typeCheck(value, type) {
+  return type.split("|").some(type => _typeCheck(value, type.trim()));
+}

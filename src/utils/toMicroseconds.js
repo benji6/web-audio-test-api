@@ -1,8 +1,8 @@
-var MIN_VALUE = 0;
-var MAX_VALUE = 24 * 60 * 60 * 1000 * 1000;
+const MIN_VALUE = 0;
+const MAX_VALUE = 24 * 60 * 60 * 1000 * 1000;
 
-function toMicroseconds(time) {
-  var value = 0;
+export default function toMicroseconds(time) {
+  let value = 0;
 
   if (typeof time === "number") {
     // seconds -> microseconds
@@ -10,7 +10,7 @@ function toMicroseconds(time) {
     return Math.max(MIN_VALUE, Math.min(value, MAX_VALUE));
   }
 
-  var matches = /^([0-5]\d):([0-5]\d)\.(\d\d\d)$/.exec(time);
+  let matches = /^([0-5]\d):([0-5]\d)\.(\d\d\d)$/.exec(time);
   if (matches) {
     value += +matches[1]; // minutes
     value *= 60;
@@ -23,5 +23,3 @@ function toMicroseconds(time) {
 
   return value;
 }
-
-module.exports = toMicroseconds;

@@ -1,8 +1,8 @@
-var _ = require("./utils");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioNode = require("./AudioNode");
-var AudioBuffer = require("./AudioBuffer");
-var AudioProcessingEvent = require("./AudioProcessingEvent");
+import _ from "./utils";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioNode from "./AudioNode";
+import AudioBuffer from "./AudioBuffer";
+import AudioProcessingEvent from "./AudioProcessingEvent";
 
 var ScriptProcessorNodeConstructor = function ScriptProcessorNode() {
   throw new TypeError("Illegal constructor: use audioContext.createScriptProcessor(bufferSize: number, [numberOfInputChannels: number], [numberOfOutputChannels: number])");

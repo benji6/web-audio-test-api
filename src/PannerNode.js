@@ -1,7 +1,7 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioNode = require("./AudioNode");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioNode from "./AudioNode";
 
 var PanningModelType = "enum { equalpower, HRTF }";
 var DistanceModelType = "enum { linear, inverse, exponential }";

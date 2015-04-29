@@ -1,9 +1,9 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioNode = require("./AudioNode");
-var AudioParam = require("./AudioParam");
-var Event = require("./Event");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioNode from "./AudioNode";
+import AudioParam from "./AudioParam";
+import Event from "./Event";
 
 var AudioBufferSourceNodeConstructor = function AudioBufferSourceNode() {
   throw new TypeError("Illegal constructor: use audioContext.createBufferSource()");

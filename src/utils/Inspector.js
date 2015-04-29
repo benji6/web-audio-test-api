@@ -1,35 +1,33 @@
-var argsCheck = require("./argsCheck");
-var formatter = require("./formatter");
-var nth = require("./nth");
+import argsCheck from "./argsCheck";
+import formatter from "./formatter";
+import nth from "./nth";
 
-function Inspector(instance, methodName, argsInfo) {
-  this.instance = instance;
-  this.argsInfo = argsInfo;
-  this.form = formatter.methodForm(instance, methodName, argsInfo);
-}
-
-Inspector.prototype.validateArguments = function(args, callback) {
-  var errIndex = argsCheck(args, this.argsInfo.map(function(info) {
-    return info.type;
-  }));
-  var msg = "";
-  if (errIndex !== -1) {
-    msg += "the " + nth(errIndex) + " argument ";
-    msg += formatter.shouldBeButGot(this.argsInfo[errIndex].type, args[errIndex]);
-    callback.call(this.instance, msg);
+export default class Inspector {
+  constructor(instance, methodName, argsInfo) {
+    this.instance = instance;
+    this.argsInfo = argsInfo;
+    this.form = formatter.methodForm(instance, methodName, argsInfo);
   }
-  this.argsInfo.forEach(function(info, index) {
-    var msg = info.validate && info.validate.call(this.instance, args[index], this.argsInfo[index].name);
-    if (msg) {
+
+  validateArguments(args, callback) {
+    let errIndex = argsCheck(args, this.argsInfo.map(info => info.type));
+    let msg = "";
+    if (errIndex !== -1) {
+      msg += `the ${nth(errIndex)} argument `;
+      msg += formatter.shouldBeButGot(this.argsInfo[errIndex].type, args[errIndex]);
       callback.call(this.instance, msg);
     }
-  }, this);
-};
-
-Inspector.prototype.assert = function(test, callback) {
-  if (!test) {
-    callback.call(this.instance);
+    this.argsInfo.forEach((info, index) => {
+      let msg = info.validate && info.validate.call(this.instance, args[index], this.argsInfo[index].name);
+      if (msg) {
+        callback.call(this.instance, msg);
+      }
+    });
   }
-};
 
-module.exports = Inspector;
+  assert(test, callback) {
+    if (!test) {
+      callback.call(this.instance);
+    }
+  }
+}

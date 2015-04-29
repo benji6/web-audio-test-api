@@ -1,8 +1,8 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioNode = require("./AudioNode");
-var AudioParam = require("./AudioParam");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioNode from "./AudioNode";
+import AudioParam from "./AudioParam";
 
 var BiquadFilterType = "enum { lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch, allpass }";
 

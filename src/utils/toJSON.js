@@ -1,12 +1,12 @@
-var name = require("./name");
+import name from "./name";
 
-function toJSON(node, func, memo) {
+export default function toJSON(node, func, memo) {
   var result;
 
   memo = memo || [];
 
   if (memo.indexOf(node) !== -1) {
-    return "<circular:" + name(node) + ">";
+    return `<circular:${name(node)}>`;
   }
   memo.push(node);
 
@@ -16,5 +16,3 @@ function toJSON(node, func, memo) {
 
   return result;
 }
-
-module.exports = toJSON;

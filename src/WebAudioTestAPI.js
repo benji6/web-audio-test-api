@@ -1,4 +1,4 @@
-var WebAudioAPI = require("./WebAudioAPI");
+import WebAudioAPI from "./WebAudioAPI";
 
 var WebAudioTestAPI = {};
 

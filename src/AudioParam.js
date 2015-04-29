@@ -1,6 +1,6 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
 
 function insertEvent(_this, event) {
   var time = event.time;

@@ -1,7 +1,5 @@
-var toMicroseconds = require("./toMicroseconds");
+import toMicroseconds from "./toMicroseconds";
 
-function toSeconds(time) {
+export default function toSeconds(time) {
   return toMicroseconds(time) / (1000 * 1000);
 }
-
-module.exports = toSeconds;

@@ -1,26 +1,24 @@
-var typeCheck = require("./typeCheck");
-var formatter = require("./formatter");
+import typeCheck from "./typeCheck";
+import formatter from "./formatter";
 
-function defineAttribute(instance, name, type, value, callback) {
-  var spec = { enumerable: true };
+export default function defineAttribute(instance, name, type, value, callback) {
+  let spec = { enumerable: true };
 
   if (typeof value === "function") {
     type = "readonly";
     spec.get = value;
   } else {
-    spec.get = function() {
-      return value;
-    };
+    spec.get = () => value;
   }
 
   if (type === "readonly") {
-    spec.set = function() {
+    spec.set = () => {
       callback.call(instance, name + " is readonly");
     };
   } else {
-    spec.set = function(newValue) {
+    spec.set = (newValue) => {
       if (!typeCheck(newValue, type)) {
-        callback.call(instance, name + " " + formatter.shouldBeButGot(type, newValue));
+        callback.call(instance, `${name} ${formatter.shouldBeButGot(type, newValue)}`);
       } else {
         value = newValue;
       }
@@ -29,5 +27,3 @@ function defineAttribute(instance, name, type, value, callback) {
 
   Object.defineProperty(instance, name, spec);
 }
-
-module.exports = defineAttribute;

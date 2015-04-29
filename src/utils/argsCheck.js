@@ -1,15 +1,15 @@
-var typeCheck = require("./typeCheck");
+import typeCheck from "./typeCheck";
 
-function argsCheck(args, types) {
-  types = types.filter(function(type, index) {
+export default function argsCheck(args, types) {
+  types = types.filter((type, index) => {
     return !(/^optional/.test(type) && args.length <= index);
   });
 
-  types = types.map(function(type) {
+  types = types.map((type) => {
     return type.replace(/^optional\s*/, "");
   });
 
-  for (var i = 0, imax = types.length; i < imax; i++) {
+  for (let i = 0, imax = types.length; i < imax; i++) {
     if (!typeCheck(args[i], types[i])) {
       return i;
     }
@@ -17,5 +17,3 @@ function argsCheck(args, types) {
 
   return -1;
 }
-
-module.exports = argsCheck;

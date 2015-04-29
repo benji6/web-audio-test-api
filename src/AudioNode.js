@@ -1,8 +1,8 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioParam = require("./AudioParam");
-var EventTarget = require("./EventTarget");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioParam from "./AudioParam";
+import EventTarget from "./EventTarget";
 
 var ChannelCountMode = "enum { max, clamped-max, explicit }";
 var ChannelInterpretation = "enum { speakers, discrete }";

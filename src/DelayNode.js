@@ -1,7 +1,7 @@
-var _ = require("./utils");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioNode = require("./AudioNode");
-var AudioParam = require("./AudioParam");
+import _ from "./utils";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioNode from "./AudioNode";
+import AudioParam from "./AudioParam";
 
 var DelayNodeConstructor = function DelayNode() {
   throw new TypeError("Illegal constructor: use audioContext.createDelay([maxDelayTime: number])");

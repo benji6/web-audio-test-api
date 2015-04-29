@@ -1,6 +1,6 @@
-var _ = require("./utils");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var Event = require("./Event");
+import _ from "./utils";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import Event from "./Event";
 
 var AudioProcessingEventConstructor = function AudioProcessingEvent() {
   throw new TypeError("Illegal constructor");

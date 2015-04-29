@@ -1,12 +1,12 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioContext = require("./AudioContext");
-var AudioBuffer = require("./AudioBuffer");
-var AudioDestinationNode = require("./AudioDestinationNode");
-var AudioListener = require("./AudioListener");
-var EventTarget = require("./EventTarget");
-var OfflineAudioCompletionEvent = require("./OfflineAudioCompletionEvent");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioContext from "./AudioContext";
+import AudioBuffer from "./AudioBuffer";
+import AudioDestinationNode from "./AudioDestinationNode";
+import AudioListener from "./AudioListener";
+import EventTarget from "./EventTarget";
+import OfflineAudioCompletionEvent from "./OfflineAudioCompletionEvent";
 
 function OfflineAudioContext(numberOfChannels, length, sampleRate) {
   if (!(this instanceof OfflineAudioContext)) {

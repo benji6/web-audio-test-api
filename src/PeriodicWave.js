@@ -1,5 +1,5 @@
-var _ = require("./utils");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
+import _ from "./utils";
+import WebAudioTestAPI from "./WebAudioTestAPI";
 
 var PeriodicWaveConstructor = function PeriodicWave() {
   throw new TypeError("Illegal constructor");

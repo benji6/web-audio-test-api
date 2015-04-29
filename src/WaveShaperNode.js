@@ -1,6 +1,6 @@
-var _ = require("./utils");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioNode = require("./AudioNode");
+import _ from "./utils";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioNode from "./AudioNode";
 
 var OverSampleType = "enum { none, 2x, 4x }";
 

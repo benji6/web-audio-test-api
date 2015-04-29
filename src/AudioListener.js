@@ -1,6 +1,6 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
 
 var AudioListenerConstructor = function AudioListener() {
   throw new TypeError("Illegal constructor");

@@ -1,6 +1,6 @@
-var article = require("./article");
+import article from "./article";
 
-function pp(value) {
+export default function pp(value) {
   if (!value) {
     return String(value);
   }
@@ -11,22 +11,20 @@ function pp(value) {
   }
 
   if (type === "string") {
-    return "'" + value + "'";
+    return `'${value}'`;
   }
 
   if (Array.isArray(value)) {
-    return "[ " + value.map(pp).join(", ") + " ]";
+    return `[ ${value.map(pp).join(", ")} ]`;
   }
 
   if (value.constructor === {}.constructor) {
-    return "{ " + Object.keys(value).map(function(key) {
+    return "{ " + Object.keys(value).map((key) => {
       return key + ": " + pp(value[key]);
     }).join(", ") + "}";
   }
 
-  var name = value.constructor.name || Object.prototype.toString.call(value).slice(8, -1);
+  let name = value.constructor.name || Object.prototype.toString.call(value).slice(8, -1);
 
-  return article(name) + " " + name;
+  return `${article(name)} ${name}`;
 }
-
-module.exports = pp;

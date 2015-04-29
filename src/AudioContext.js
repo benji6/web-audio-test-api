@@ -1,30 +1,30 @@
-var _ = require("./utils");
-var Inspector = require("./utils/Inspector");
-var WebAudioTestAPI = require("./WebAudioTestAPI");
-var AudioDestinationNode = require("./AudioDestinationNode");
-var AudioListener = require("./AudioListener");
-var AudioBuffer = require("./AudioBuffer");
-var AudioBufferSourceNode = require("./AudioBufferSourceNode");
-var MediaElementAudioSourceNode = require("./MediaElementAudioSourceNode");
-var MediaStreamAudioSourceNode = require("./MediaStreamAudioSourceNode");
-var MediaStreamAudioDestinationNode = require("./MediaStreamAudioDestinationNode");
-var ScriptProcessorNode = require("./ScriptProcessorNode");
-var AnalyserNode = require("./AnalyserNode");
-var GainNode = require("./GainNode");
-var DelayNode = require("./DelayNode");
-var BiquadFilterNode = require("./BiquadFilterNode");
-var WaveShaperNode = require("./WaveShaperNode");
-var PannerNode = require("./PannerNode");
-var ConvolverNode = require("./ConvolverNode");
-var ChannelSplitterNode = require("./ChannelSplitterNode");
-var ChannelMergerNode = require("./ChannelMergerNode");
-var DynamicsCompressorNode = require("./DynamicsCompressorNode");
-var OscillatorNode = require("./OscillatorNode");
-var PeriodicWave = require("./PeriodicWave");
-var EventTarget = require("./EventTarget");
+import _ from "./utils";
+import Inspector from "./utils/Inspector";
+import WebAudioTestAPI from "./WebAudioTestAPI";
+import AudioDestinationNode from "./AudioDestinationNode";
+import AudioListener from "./AudioListener";
+import AudioBuffer from "./AudioBuffer";
+import AudioBufferSourceNode from "./AudioBufferSourceNode";
+import MediaElementAudioSourceNode from "./MediaElementAudioSourceNode";
+import MediaStreamAudioSourceNode from "./MediaStreamAudioSourceNode";
+import MediaStreamAudioDestinationNode from "./MediaStreamAudioDestinationNode";
+import ScriptProcessorNode from "./ScriptProcessorNode";
+import AnalyserNode from "./AnalyserNode";
+import GainNode from "./GainNode";
+import DelayNode from "./DelayNode";
+import BiquadFilterNode from "./BiquadFilterNode";
+import WaveShaperNode from "./WaveShaperNode";
+import PannerNode from "./PannerNode";
+import ConvolverNode from "./ConvolverNode";
+import ChannelSplitterNode from "./ChannelSplitterNode";
+import ChannelMergerNode from "./ChannelMergerNode";
+import DynamicsCompressorNode from "./DynamicsCompressorNode";
+import OscillatorNode from "./OscillatorNode";
+import PeriodicWave from "./PeriodicWave";
+import EventTarget from "./EventTarget";
 
-require("./MediaStream");
-require("./HTMLMediaElement");
+import "./MediaStream";
+import "./HTMLMediaElement";
 
 function AudioContext() {
   if (!(this instanceof AudioContext)) {

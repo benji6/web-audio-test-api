@@ -1,5 +1,5 @@
-var article = require("../utils/article");
-var pp = require("../utils/pp");
+import article from "../utils/article";
+import pp from "../utils/pp";
 
 function methodForm(instance, methodName, argsInfo) {
   var msg = "";
@@ -7,7 +7,7 @@ function methodForm(instance, methodName, argsInfo) {
   if (instance) {
     msg += instance.constructor.name;
     if (methodName) {
-      msg += "#" + methodName;
+      msg += `#${methodName}`;
     }
   } else {
     msg += methodName;
@@ -26,18 +26,18 @@ function shouldBeButGot(type, value) {
 
   type = type.replace(/^optional\s*/, "").trim();
 
-  msg += "should be " + article(type) + " " + type + ", ";
-  msg += "but got: " + pp(value);
+  msg += `should be ${article(type)} ${type}, `;
+  msg += `but got: ${pp(value)}`;
 
   return msg;
 }
 
 function concat(instance, msg) {
-  return instance.constructor.name + "#" + msg;
+  return `${instance.constructor.name}#${msg}`;
 }
 
-module.exports = {
-  methodForm: methodForm,
-  shouldBeButGot: shouldBeButGot,
-  concat: concat,
+export default {
+  methodForm,
+  shouldBeButGot,
+  concat,
 };
