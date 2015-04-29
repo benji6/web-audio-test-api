@@ -1,4 +1,4 @@
-export default function preventSuper(superClass) {
+export default function preventSuperCall(superClass) {
   if (!superClass) {
     superClass = () => {};
   }

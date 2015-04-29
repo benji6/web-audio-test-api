@@ -8,7 +8,7 @@ describe("ChannelSplitterNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.ChannelSplitterNode(audioContext);
+      var node = audioContext.createChannelSplitter();
 
       assert(node instanceof global.ChannelSplitterNode);
       assert(node instanceof global.AudioNode);
@@ -23,7 +23,7 @@ describe("ChannelSplitterNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.ChannelSplitterNode(audioContext);
+      var node = audioContext.createChannelSplitter();
 
       assert.deepEqual(node.toJSON(), {
         name: "ChannelSplitterNode",

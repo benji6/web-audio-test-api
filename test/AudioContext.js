@@ -10,14 +10,6 @@ describe("AudioContext", function() {
     it("()", function() {
       assert(audioContext instanceof global.AudioContext);
       assert(audioContext instanceof global.EventTarget);
-
-      assert.throws(function() {
-        /* eslint-disable */
-        global.AudioContext();
-        /*eslint-enable*/
-      }, function(e) {
-        return e instanceof TypeError && /Failed to construct/.test(e.message);
-      });
     });
   });
 

@@ -9,7 +9,7 @@ global.MediaStream = global.MediaStream || class MediaStream extends EventTarget
   }
 };
 
-export default class MediaStream extends _.preventSuper(global.MediaStream) {
+export default class MediaStream extends _.preventSuperCall(global.MediaStream) {
 }
 
 WebAudioTestAPI.MediaStream = MediaStream;

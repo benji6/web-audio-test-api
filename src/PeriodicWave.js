@@ -1,19 +1,18 @@
 import _ from "./utils";
 import WebAudioTestAPI from "./WebAudioTestAPI";
 
-var PeriodicWaveConstructor = function PeriodicWave() {
-  throw new TypeError("Illegal constructor");
-};
+export default class PeriodicWave {
+  constructor(admission, real, imag) {
+    _.immigration.check(admission, () => {
+      throw new TypeError("Illegal constructor");
+    });
 
-function PeriodicWave(real, imag) {
-  Object.defineProperties(this, {
-    $name: { value: "PeriodicWave" },
-    $real: { value: real },
-    $imag: { value: imag },
-  });
+    Object.defineProperties(this, {
+      $name: { value: "PeriodicWave" },
+      $real: { value: real },
+      $imag: { value: imag },
+    });
+  }
 }
-_.inherits(PeriodicWave, PeriodicWaveConstructor);
 
-PeriodicWave.exports = PeriodicWaveConstructor;
-
-module.exports = WebAudioTestAPI.PeriodicWave = PeriodicWave;
+WebAudioTestAPI.PeriodicWave = PeriodicWave;

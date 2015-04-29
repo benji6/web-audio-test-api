@@ -8,7 +8,7 @@ describe("OscillatorNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert(node instanceof global.OscillatorNode);
       assert(node instanceof global.AudioNode);
@@ -23,7 +23,7 @@ describe("OscillatorNode", function() {
 
   describe("#type", function() {
     it("get/set: OscillatorType", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert(typeof node.type === "string");
 
@@ -49,7 +49,7 @@ describe("OscillatorNode", function() {
 
   describe("#frequency", function() {
     it("get: AudioParam", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert(node.frequency instanceof WebAudioTestAPI.AudioParam);
 
@@ -63,7 +63,7 @@ describe("OscillatorNode", function() {
 
   describe("#detune", function() {
     it("get: AudioParam", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert(node.detune instanceof WebAudioTestAPI.AudioParam);
 
@@ -77,7 +77,7 @@ describe("OscillatorNode", function() {
 
   describe("#onended", function() {
     it("get/set: function", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
       var fn1 = function() {};
       var fn2 = function() {};
 
@@ -102,7 +102,7 @@ describe("OscillatorNode", function() {
 
   describe("#start", function() {
     it("(): void", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       node.start();
 
@@ -113,7 +113,7 @@ describe("OscillatorNode", function() {
       assert(node.start === global.OscillatorNode.prototype.start);
     });
     it("(when: number): void", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert.throws(function() {
         node.start("INVALID");
@@ -131,7 +131,7 @@ describe("OscillatorNode", function() {
 
   describe("#stop(when)", function() {
     it("(): void", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert.throws(function() {
         node.stop();
@@ -158,7 +158,7 @@ describe("OscillatorNode", function() {
       assert(node.stop === global.OscillatorNode.prototype.stop);
     });
     it("(when: number): void", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert.throws(function() {
         node.stop(0);
@@ -186,9 +186,9 @@ describe("OscillatorNode", function() {
 
   describe("#setPeriodicWave", function() {
     it("(periodicWave: PeriodicWave): void", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
-      var periodicWave = new WebAudioTestAPI.PeriodicWave(
-        audioContext, new Float32Array(128), new Float32Array(128)
+      var node = audioContext.createOscillator();
+      var periodicWave = audioContext.createPeriodicWave(
+        new Float32Array(128), new Float32Array(128)
       );
 
       node.setPeriodicWave(periodicWave);
@@ -208,7 +208,7 @@ describe("OscillatorNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert.deepEqual(node.toJSON(), {
         name: "OscillatorNode",
@@ -228,7 +228,7 @@ describe("OscillatorNode", function() {
 
   describe("$state", function() {
     it("get: string", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert(node.$state === "UNSCHEDULED");
 
@@ -240,7 +240,7 @@ describe("OscillatorNode", function() {
 
   describe("$stateAtTime", function() {
     it("(time: number|string): string", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
 
       assert(node.$stateAtTime("00:00.000") === "UNSCHEDULED");
 
@@ -252,7 +252,7 @@ describe("OscillatorNode", function() {
 
   describe("works", function() {
     it("onended", function() {
-      var node = new WebAudioTestAPI.OscillatorNode(audioContext);
+      var node = audioContext.createOscillator();
       var onended = sinon.spy();
       var event;
 

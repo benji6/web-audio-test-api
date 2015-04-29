@@ -1,9 +1,12 @@
 describe("AudioProcessingEvent", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
+  var util = WebAudioTestAPI.util;
 
   describe("constructor", function() {
     it("()", function() {
-      var event = new WebAudioTestAPI.AudioProcessingEvent();
+      var event = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioProcessingEvent(admission);
+      });
 
       assert(event instanceof global.AudioProcessingEvent);
       assert(event instanceof global.Event);

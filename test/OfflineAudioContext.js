@@ -12,14 +12,6 @@ describe("OfflineAudioContext", function() {
       assert(audioContext instanceof global.AudioContext);
 
       assert.throws(function() {
-        /* eslint-disable */
-        WebAudioTestAPI.OfflineAudioContext();
-        /* eslint-enable */
-      }, function(e) {
-        return e instanceof TypeError && /Failed to construct/.test(e.message);
-      });
-
-      assert.throws(function() {
         audioContext = new WebAudioTestAPI.OfflineAudioContext("INVALID", 441, 44100);
       }, function(e) {
         return e instanceof TypeError && /should be a number/.test(e.message);

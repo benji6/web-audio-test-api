@@ -9,7 +9,7 @@ global.Element = global.Element || class Element extends EventTarget {
   }
 };
 
-export default class Element extends _.preventSuper(global.Element) {
+export default class Element extends _.preventSuperCall(global.Element) {
 }
 
 WebAudioTestAPI.Element = Element;

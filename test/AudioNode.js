@@ -1,5 +1,6 @@
 describe("AudioNode", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
+  var util = WebAudioTestAPI.util;
   var audioContext;
 
   beforeEach(function() {
@@ -8,7 +9,9 @@ describe("AudioNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(node instanceof global.AudioNode);
       assert(node instanceof global.EventTarget);
@@ -23,7 +26,9 @@ describe("AudioNode", function() {
 
   describe("#context", function() {
     it("get: AudioContext", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(node.context === audioContext);
 
@@ -37,7 +42,9 @@ describe("AudioNode", function() {
 
   describe("#numberOfInputs", function() {
     it("get: number", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(typeof node.numberOfInputs === "number");
 
@@ -51,7 +58,9 @@ describe("AudioNode", function() {
 
   describe("#numberOfOutputs", function() {
     it("get: number", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(typeof node.numberOfOutputs === "number");
 
@@ -65,7 +74,9 @@ describe("AudioNode", function() {
 
   describe("#channelCount", function() {
     it("get/set: number", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(typeof node.channelCount === "number");
 
@@ -85,7 +96,9 @@ describe("AudioNode", function() {
 
   describe("#channelCountMode", function() {
     it("get/set: ChannelCountMode", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(typeof node.channelCountMode === "string");
 
@@ -108,7 +121,9 @@ describe("AudioNode", function() {
 
   describe("#channelInterpretation", function() {
     it("get/set: ChannelInterpretation", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert(typeof node.channelInterpretation === "string");
 
@@ -128,7 +143,9 @@ describe("AudioNode", function() {
 
   describe("#connect", function() {
     it("(destination: AudioNode, [output: number], [input: number]): void", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       node.connect(audioContext.destination);
 
@@ -178,7 +195,9 @@ describe("AudioNode", function() {
 
   describe("#disconnect", function() {
     it("([output: number]): void", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       node.disconnect();
       node.disconnect(0);
@@ -201,7 +220,9 @@ describe("AudioNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.AudioNode(audioContext);
+      var node = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       assert.deepEqual(node.toJSON(), {
         name: "AudioNode",
@@ -224,9 +245,15 @@ describe("AudioNode", function() {
 
   describe("works", function() {
     it("connect", function() {
-      var node1 = new WebAudioTestAPI.AudioNode(audioContext);
-      var node2 = new WebAudioTestAPI.AudioNode(audioContext);
-      var node3 = new WebAudioTestAPI.AudioNode(audioContext);
+      var node1 = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
+      var node2 = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
+      var node3 = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       node1.$id = "foo";
       node2.$id = "bar";
@@ -255,9 +282,15 @@ describe("AudioNode", function() {
     });
 
     it("disconnect", function() {
-      var node1 = new WebAudioTestAPI.AudioNode(audioContext);
-      var node2 = new WebAudioTestAPI.AudioNode(audioContext);
-      var node3 = new WebAudioTestAPI.AudioNode(audioContext);
+      var node1 = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
+      var node2 = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
+      var node3 = util.immigration.apply(function(admission) {
+        return new WebAudioTestAPI.AudioNode(admission, audioContext);
+      });
 
       node1.$id = "foo";
       node2.$id = "bar";

@@ -3,103 +3,84 @@ import Inspector from "./utils/Inspector";
 import WebAudioTestAPI from "./WebAudioTestAPI";
 import AudioContext from "./AudioContext";
 import AudioBuffer from "./AudioBuffer";
-import AudioDestinationNode from "./AudioDestinationNode";
-import AudioListener from "./AudioListener";
-import EventTarget from "./EventTarget";
 import OfflineAudioCompletionEvent from "./OfflineAudioCompletionEvent";
 
-function OfflineAudioContext(numberOfChannels, length, sampleRate) {
-  if (!(this instanceof OfflineAudioContext)) {
-    throw new TypeError("Failed to construct 'AudioContext': Please use the 'new' operator");
+export default class OfflineAudioContext extends AudioContext {
+  constructor(numberOfChannels, length, sampleRate) {
+    // TODO: fix
+    let savedSampleRate = WebAudioTestAPI.sampleRate;
+
+    WebAudioTestAPI.sampleRate = sampleRate;
+
+    super();
+
+    WebAudioTestAPI.sampleRate = savedSampleRate;
+
+    let inspector = new Inspector(this, null, [
+      { name: "numberOfChannels", type: "number" },
+      { name: "length"          , type: "number" },
+      { name: "sampleRate"      , type: "number" },
+    ]);
+
+    inspector.validateArguments(arguments, (msg) => {
+      throw new TypeError(inspector.form + "; " + msg);
+    });
+
+    let oncomplete = null;
+
+    _.defineAttribute(this, "oncomplete", "function|null", oncomplete, (msg) => {
+      throw new TypeError(_.formatter.concat(this, msg));
+    });
+
+    this._numberOfChannels = numberOfChannels;
+    this._length = length;
+    this._rendering = false;
   }
 
-  EventTarget.call(this);
+  startRendering() {
+    let inspector = new Inspector(this, "startRendering", []);
 
-  var inspector = new Inspector(this, null, [
-    { name: "numberOfChannels", type: "number" },
-    { name: "length"          , type: "number" },
-    { name: "sampleRate"      , type: "number" },
-  ]);
+    inspector.assert(!this._rendering, function() {
+      throw Error(inspector.form + "; must only be called one time");
+    });
 
-  inspector.validateArguments(arguments, function(msg) {
-    throw new TypeError(inspector.form + "; " + msg);
-  });
-
-  var destination = new AudioDestinationNode(this);
-  var currentTime = function() { return this._microCurrentTime / (1000 * 1000); };
-  var listener = new AudioListener(this);
-  var oncomplete = null;
-
-  _.defineAttribute(this, "destination", "readonly", destination, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "sampleRate", "readonly", sampleRate, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "currentTime", "readonly", currentTime, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "listener", "readonly", listener, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "oncomplete", "function|null", oncomplete, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-
-  Object.defineProperties(this, {
-    $name   : { value: "OfflineAudioContext" },
-    $context: { value: this },
-  });
-
-  this._microCurrentTime = 0;
-  this._processedSamples = 0;
-  this._tick = 0;
-
-  this._numberOfChannels = numberOfChannels;
-  this._length = length;
-  this._rendering = false;
-}
-_.inherits(OfflineAudioContext, AudioContext);
-
-OfflineAudioContext.prototype.startRendering = function() {
-  var inspector = new Inspector(this, "startRendering", []);
-
-  inspector.assert(!this._rendering, function() {
-    throw Error(inspector.form + "; must only be called one time");
-  });
-
-  this._rendering = true;
-};
-
-OfflineAudioContext.prototype._process = function(microseconds) {
-  if (!this._rendering || this._length <= this._processedSamples) {
-    return;
+    this._rendering = true;
   }
 
-  var nextMicroCurrentTime = this._microCurrentTime + microseconds;
+  _process(microseconds) {
+    if (!this._rendering || this._length <= this._processedSamples) {
+      return;
+    }
 
-  while (this._microCurrentTime < nextMicroCurrentTime) {
-    var _nextMicroCurrentTime = Math.min(this._microCurrentTime + 1000, nextMicroCurrentTime);
-    var _nextProcessedSamples = Math.floor(_nextMicroCurrentTime / (1000 * 1000) * this.sampleRate);
-    var inNumSamples = _nextProcessedSamples - this._processedSamples;
+    let nextMicroCurrentTime = this._microCurrentTime + microseconds;
 
-    this.destination.$process(inNumSamples, ++this._tick);
+    while (this._microCurrentTime < nextMicroCurrentTime) {
+      let _nextMicroCurrentTime = Math.min(this._microCurrentTime + 1000, nextMicroCurrentTime);
+      let _nextProcessedSamples = Math.floor(_nextMicroCurrentTime / (1000 * 1000) * this.sampleRate);
+      let inNumSamples = _nextProcessedSamples - this._processedSamples;
 
-    this._microCurrentTime = _nextMicroCurrentTime;
-    this._processedSamples = _nextProcessedSamples;
+      this.destination.$process(inNumSamples, ++this._tick);
+
+      this._microCurrentTime = _nextMicroCurrentTime;
+      this._processedSamples = _nextProcessedSamples;
+
+      if (this._length <= this._processedSamples) {
+        break;
+      }
+    }
 
     if (this._length <= this._processedSamples) {
-      break;
+      let event = _.immigration.apply(admission =>
+        new OfflineAudioCompletionEvent(admission, this)
+      );
+
+      event.renderedBuffer = _.immigration.apply(admission =>
+        new AudioBuffer(admission, this, this._numberOfChannels, this._length, this.sampleRate)
+      );
+
+      this.dispatchEvent(event);
     }
   }
+}
 
-  if (this._length <= this._processedSamples) {
-    var event = new OfflineAudioCompletionEvent(this);
-
-    event.renderedBuffer = new AudioBuffer(this, this._numberOfChannels, this._length, this.sampleRate);
-
-    this.dispatchEvent(event);
-  }
-};
-
-module.exports = WebAudioTestAPI.OfflineAudioContext = OfflineAudioContext;
+WebAudioTestAPI.OfflineAudioContext = OfflineAudioContext;

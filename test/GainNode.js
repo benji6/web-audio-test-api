@@ -8,7 +8,7 @@ describe("GainNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.GainNode(audioContext);
+      var node = audioContext.createGain();
 
       assert(node instanceof global.GainNode);
       assert(node instanceof global.AudioNode);
@@ -23,7 +23,7 @@ describe("GainNode", function() {
 
   describe("#gain", function() {
     it("get: AudioParam", function() {
-      var node = new WebAudioTestAPI.GainNode(audioContext);
+      var node = audioContext.createGain();
 
       assert(node.gain instanceof WebAudioTestAPI.AudioParam);
 
@@ -37,7 +37,7 @@ describe("GainNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.GainNode(audioContext);
+      var node = audioContext.createGain();
 
       assert.deepEqual(node.toJSON(), {
         name: "GainNode",

@@ -8,7 +8,7 @@ describe("MediaStreamAudioDestinationNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.MediaStreamAudioDestinationNode(audioContext);
+      var node = audioContext.createMediaStreamDestination();
 
       assert(node instanceof global.MediaStreamAudioDestinationNode);
       assert(node instanceof global.AudioNode);
@@ -23,7 +23,7 @@ describe("MediaStreamAudioDestinationNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.MediaStreamAudioDestinationNode(audioContext);
+      var node = audioContext.createMediaStreamDestination();
 
       assert.deepEqual(node.toJSON(), {
         name: "MediaStreamAudioDestinationNode",

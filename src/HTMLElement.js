@@ -9,7 +9,7 @@ global.HTMLElement = global.HTMLElement || class HTMLElement extends Element {
   }
 };
 
-export default class HTMLElement extends _.preventSuper(global.HTMLElement) {
+export default class HTMLElement extends _.preventSuperCall(global.HTMLElement) {
 }
 
 WebAudioTestAPI.HTMLElement = HTMLElement;

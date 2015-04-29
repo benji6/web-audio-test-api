@@ -8,7 +8,7 @@ describe("AudioDestinationNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.AudioDestinationNode(audioContext);
+      var node = audioContext.destination;
 
       assert(node instanceof global.AudioDestinationNode);
       assert(node instanceof global.AudioNode);
@@ -23,7 +23,7 @@ describe("AudioDestinationNode", function() {
 
   describe("#maxChannelCount", function() {
     it("get: number", function() {
-      var node = new WebAudioTestAPI.AudioDestinationNode(audioContext);
+      var node = audioContext.destination;
 
       assert(typeof node.maxChannelCount === "number");
 
@@ -37,7 +37,7 @@ describe("AudioDestinationNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.AudioDestinationNode(audioContext);
+      var node = audioContext.destination;
 
       assert.deepEqual(node.toJSON(), {
         name: "AudioDestinationNode",

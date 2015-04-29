@@ -9,7 +9,7 @@ global.HTMLMediaElement = global.HTMLMediaElement || class HTMLMediaElement exte
   }
 };
 
-export default class HTMLMediaElement extends _.preventSuper(global.HTMLMediaElement) {
+export default class HTMLMediaElement extends _.preventSuperCall(global.HTMLMediaElement) {
 }
 
 WebAudioTestAPI.HTMLMediaElement = HTMLMediaElement;

@@ -1,37 +1,39 @@
+import utils from "./utils";
 import WebAudioAPI from "./WebAudioAPI";
 
 var WebAudioTestAPI = {};
 
 WebAudioTestAPI.VERSION = "0.2.1";
 WebAudioTestAPI.sampleRate = 44100;
+WebAudioTestAPI.util = utils;
 
 WebAudioTestAPI.use = function() {
-  global.AnalyserNode = WebAudioTestAPI.AnalyserNode.exports;
-  global.AudioBuffer = WebAudioTestAPI.AudioBuffer.exports;
-  global.AudioBufferSourceNode = WebAudioTestAPI.AudioBufferSourceNode.exports;
+  global.AnalyserNode = WebAudioTestAPI.AnalyserNode;
+  global.AudioBuffer = WebAudioTestAPI.AudioBuffer;
+  global.AudioBufferSourceNode = WebAudioTestAPI.AudioBufferSourceNode;
   global.AudioContext = WebAudioTestAPI.AudioContext;
-  global.AudioDestinationNode = WebAudioTestAPI.AudioDestinationNode.exports;
-  global.AudioListener = WebAudioTestAPI.AudioListener.exports;
-  global.AudioNode = WebAudioTestAPI.AudioNode.exports;
-  global.AudioParam = WebAudioTestAPI.AudioParam.exports;
-  global.AudioProcessingEvent = WebAudioTestAPI.AudioProcessingEvent.exports;
-  global.BiquadFilterNode = WebAudioTestAPI.BiquadFilterNode.exports;
-  global.ChannelMergerNode = WebAudioTestAPI.ChannelMergerNode.exports;
-  global.ChannelSplitterNode = WebAudioTestAPI.ChannelSplitterNode.exports;
-  global.ConvolverNode = WebAudioTestAPI.ConvolverNode.exports;
-  global.DelayNode = WebAudioTestAPI.DelayNode.exports;
-  global.DynamicsCompressorNode = WebAudioTestAPI.DynamicsCompressorNode.exports;
-  global.GainNode = WebAudioTestAPI.GainNode.exports;
-  global.MediaElementAudioSourceNode = WebAudioTestAPI.MediaElementAudioSourceNode.exports;
-  global.MediaStreamAudioDestinationNode = WebAudioTestAPI.MediaStreamAudioDestinationNode.exports;
-  global.MediaStreamAudioSourceNode = WebAudioTestAPI.MediaStreamAudioSourceNode.exports;
-  global.OfflineAudioCompletionEvent = WebAudioTestAPI.OfflineAudioCompletionEvent.exports;
+  global.AudioDestinationNode = WebAudioTestAPI.AudioDestinationNode;
+  global.AudioListener = WebAudioTestAPI.AudioListener;
+  global.AudioNode = WebAudioTestAPI.AudioNode;
+  global.AudioParam = WebAudioTestAPI.AudioParam;
+  global.AudioProcessingEvent = WebAudioTestAPI.AudioProcessingEvent;
+  global.BiquadFilterNode = WebAudioTestAPI.BiquadFilterNode;
+  global.ChannelMergerNode = WebAudioTestAPI.ChannelMergerNode;
+  global.ChannelSplitterNode = WebAudioTestAPI.ChannelSplitterNode;
+  global.ConvolverNode = WebAudioTestAPI.ConvolverNode;
+  global.DelayNode = WebAudioTestAPI.DelayNode;
+  global.DynamicsCompressorNode = WebAudioTestAPI.DynamicsCompressorNode;
+  global.GainNode = WebAudioTestAPI.GainNode;
+  global.MediaElementAudioSourceNode = WebAudioTestAPI.MediaElementAudioSourceNode;
+  global.MediaStreamAudioDestinationNode = WebAudioTestAPI.MediaStreamAudioDestinationNode;
+  global.MediaStreamAudioSourceNode = WebAudioTestAPI.MediaStreamAudioSourceNode;
+  global.OfflineAudioCompletionEvent = WebAudioTestAPI.OfflineAudioCompletionEvent;
   global.OfflineAudioContext = WebAudioTestAPI.OfflineAudioContext;
-  global.OscillatorNode = WebAudioTestAPI.OscillatorNode.exports;
-  global.PannerNode = WebAudioTestAPI.PannerNode.exports;
-  global.PeriodicWave = WebAudioTestAPI.PeriodicWave.exports;
-  global.ScriptProcessorNode = WebAudioTestAPI.ScriptProcessorNode.exports;
-  global.WaveShaperNode = WebAudioTestAPI.WaveShaperNode.exports;
+  global.OscillatorNode = WebAudioTestAPI.OscillatorNode;
+  global.PannerNode = WebAudioTestAPI.PannerNode;
+  global.PeriodicWave = WebAudioTestAPI.PeriodicWave;
+  global.ScriptProcessorNode = WebAudioTestAPI.ScriptProcessorNode;
+  global.WaveShaperNode = WebAudioTestAPI.WaveShaperNode;
 };
 
 WebAudioTestAPI.unuse = function() {

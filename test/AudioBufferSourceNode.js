@@ -8,7 +8,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(node instanceof global.AudioBufferSourceNode);
       assert(node instanceof global.AudioNode);
@@ -23,9 +23,9 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#buffer", function() {
     it("get/set: AudioBuffer", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
-      var buf1 = new WebAudioTestAPI.AudioBuffer(audioContext, 1, 16, 44100);
-      var buf2 = new WebAudioTestAPI.AudioBuffer(audioContext, 2, 32, 48000);
+      var node = audioContext.createBufferSource();
+      var buf1 = audioContext.createBuffer(1, 16, 44100);
+      var buf2 = audioContext.createBuffer(2, 32, 48000);
 
       assert(node.buffer === null);
 
@@ -48,7 +48,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#playbackRate", function() {
     it("get: AudioParam", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(node.playbackRate instanceof WebAudioTestAPI.AudioParam);
 
@@ -62,7 +62,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#loop", function() {
     it("get/set: boolean", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(typeof node.loop === "boolean");
 
@@ -82,7 +82,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#loopStart", function() {
     it("get/set: number", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(typeof node.loopStart === "number");
 
@@ -102,7 +102,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#loopEnd", function() {
     it("get/set: number", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(typeof node.loopEnd === "number");
 
@@ -122,7 +122,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#onended", function() {
     it("get/set: function", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
       var fn1 = function() {};
       var fn2 = function() {};
 
@@ -147,7 +147,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#start", function() {
     it("(): void", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       node.start();
 
@@ -158,7 +158,7 @@ describe("AudioBufferSourceNode", function() {
       assert(node.start === global.AudioBufferSourceNode.prototype.start);
     });
     it("(when: number): void", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert.throws(function() {
         node.start("INVALID");
@@ -173,7 +173,7 @@ describe("AudioBufferSourceNode", function() {
       }, Error, "call twice");
     });
     it("(when: number, offset: number): void", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert.throws(function() {
         node.start(0, "INVALID");
@@ -188,7 +188,7 @@ describe("AudioBufferSourceNode", function() {
       }, Error, "call twice");
     });
     it("(when: number, offset: number, duration: number): void", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert.throws(function() {
         node.start(0, 0, "INVALID");
@@ -206,7 +206,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#stop(when)", function() {
     it("(): void", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert.throws(function() {
         node.stop();
@@ -233,7 +233,7 @@ describe("AudioBufferSourceNode", function() {
       assert(node.stop === global.AudioBufferSourceNode.prototype.stop);
     });
     it("(when: number): void", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert.throws(function() {
         node.stop(0);
@@ -261,8 +261,8 @@ describe("AudioBufferSourceNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
-      var buf = new WebAudioTestAPI.AudioBuffer(audioContext, 1, 16, 44100);
+      var node = audioContext.createBufferSource();
+      var buf = audioContext.createBuffer(1, 16, 44100);
 
       assert.deepEqual(node.toJSON(), {
         name: "AudioBufferSourceNode",
@@ -299,7 +299,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("$state", function() {
     it("get: string", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(node.$state === "UNSCHEDULED");
 
@@ -311,7 +311,7 @@ describe("AudioBufferSourceNode", function() {
 
   describe("$stateAtTime", function() {
     it("(time: number|string): string", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
+      var node = audioContext.createBufferSource();
 
       assert(node.$stateAtTime("00:00.000") === "UNSCHEDULED");
 
@@ -323,8 +323,8 @@ describe("AudioBufferSourceNode", function() {
 
   describe("works", function() {
     it("onended", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
-      var buf = new WebAudioTestAPI.AudioBuffer(audioContext, 1, 44100 * 0.025, 44100);
+      var node = audioContext.createBufferSource();
+      var buf = audioContext.createBuffer(1, 44100 * 0.025, 44100);
       var onended = sinon.spy();
       var event;
 
@@ -378,8 +378,8 @@ describe("AudioBufferSourceNode", function() {
       assert(node.$stateAtTime("00:00.200") === "FINISHED");
     });
     it("onended (auto stop)", function() {
-      var node = new WebAudioTestAPI.AudioBufferSourceNode(audioContext);
-      var buf = new WebAudioTestAPI.AudioBuffer(audioContext, 1, 44100 * 0.025, 44100);
+      var node = audioContext.createBufferSource();
+      var buf = audioContext.createBuffer(1, 44100 * 0.025, 44100);
       var onended = sinon.spy();
       var event;
 

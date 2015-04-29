@@ -1,14 +1,17 @@
 describe("PeriodicWave", function() {
   var WebAudioTestAPI = global.WebAudioTestAPI;
-  // var audioContext;
-  //
-  // beforeEach(function() {
-  //   audioContext = new WebAudioTestAPI.AudioContext();
-  // });
+  var audioContext;
+
+  beforeEach(function() {
+    audioContext = new WebAudioTestAPI.AudioContext();
+  });
 
   describe("constructor", function() {
     it("()", function() {
-      var wave = new WebAudioTestAPI.PeriodicWave();
+      var wave = audioContext.createPeriodicWave(
+        new Float32Array(1024),
+        new Float32Array(1024)
+      );
 
       assert(wave instanceof global.PeriodicWave);
 

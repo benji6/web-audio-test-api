@@ -8,7 +8,7 @@ describe("MediaElementAudioSourceNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.MediaElementAudioSourceNode(audioContext);
+      var node = audioContext.createMediaElementSource(new WebAudioTestAPI.HTMLMediaElement());
 
       assert(node instanceof global.MediaElementAudioSourceNode);
       assert(node instanceof global.AudioNode);
@@ -23,7 +23,7 @@ describe("MediaElementAudioSourceNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.MediaElementAudioSourceNode(audioContext);
+      var node = audioContext.createMediaElementSource(new WebAudioTestAPI.HTMLMediaElement());
 
       assert.deepEqual(node.toJSON(), {
         name: "MediaElementAudioSourceNode",

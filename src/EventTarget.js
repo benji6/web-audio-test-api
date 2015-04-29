@@ -8,7 +8,7 @@ global.EventTarget = global.EventTarget || class EventTarget {
   }
 };
 
-export default class EventTarget extends _.preventSuper(global.EventTarget) {
+export default class EventTarget extends _.preventSuperCall(global.EventTarget) {
   constructor() {
     super();
     this._listeners = {};

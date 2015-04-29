@@ -8,7 +8,7 @@ describe("ConvolverNode", function() {
 
   describe("constructor", function() {
     it("()", function() {
-      var node = new WebAudioTestAPI.ConvolverNode(audioContext);
+      var node = audioContext.createConvolver();
 
       assert(node instanceof global.ConvolverNode);
       assert(node instanceof global.AudioNode);
@@ -23,9 +23,9 @@ describe("ConvolverNode", function() {
 
   describe("#buffer", function() {
     it("get/set: AudioBuffer", function() {
-      var node = new WebAudioTestAPI.ConvolverNode(audioContext);
-      var buf1 = new WebAudioTestAPI.AudioBuffer(audioContext, 1, 16, 44100);
-      var buf2 = new WebAudioTestAPI.AudioBuffer(audioContext, 2, 32, 44100);
+      var node = audioContext.createConvolver();
+      var buf1 = audioContext.createBuffer(1, 16, 44100);
+      var buf2 = audioContext.createBuffer(2, 32, 44100);
 
       assert(node.buffer === null);
 
@@ -46,7 +46,7 @@ describe("ConvolverNode", function() {
 
   describe("#normalize", function() {
     it("get/set: boolean", function() {
-      var node = new WebAudioTestAPI.ConvolverNode(audioContext);
+      var node = audioContext.createConvolver();
 
       assert(typeof node.normalize === "boolean");
 
@@ -64,7 +64,7 @@ describe("ConvolverNode", function() {
 
   describe("#toJSON", function() {
     it("(): object", function() {
-      var node = new WebAudioTestAPI.ConvolverNode(audioContext);
+      var node = audioContext.createConvolver();
 
       assert.deepEqual(node.toJSON(), {
         name: "ConvolverNode",

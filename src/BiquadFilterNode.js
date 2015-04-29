@@ -4,60 +4,63 @@ import WebAudioTestAPI from "./WebAudioTestAPI";
 import AudioNode from "./AudioNode";
 import AudioParam from "./AudioParam";
 
-var BiquadFilterType = "enum { lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch, allpass }";
+const BiquadFilterType = "enum { lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch, allpass }";
 
-var BiquadFilterNodeConstructor = function BiquadFilterNode() {
-  throw new TypeError("Illegal constructor: use audioContext.createBiquadFilter()");
-};
-_.inherits(BiquadFilterNodeConstructor, AudioNode);
+export default class BiquadFilterNode extends AudioNode {
+  constructor(admission, context) {
+    super(admission, context, {
+      name: "BiquadFilterNode",
+      numberOfInputs  : 1,
+      numberOfOutputs : 1,
+      channelCount    : 2,
+      channelCountMode: "max",
+      channelInterpretation: "speakers",
+    });
 
-function BiquadFilterNode(context) {
-  AudioNode.call(this, context, {
-    name: "BiquadFilterNode",
-    numberOfInputs  : 1,
-    numberOfOutputs : 1,
-    channelCount    : 2,
-    channelCountMode: "max",
-    channelInterpretation: "speakers",
-  });
+    let type = "lowpass";
+    let frequency = _.immigration.apply(admission =>
+      new AudioParam(admission, this, "frequency", 350, 10, context.sampleRate / 2)
+    );
+    let detune = _.immigration.apply(admission =>
+      new AudioParam(admission, this, "detune", 0, -4800, 4800)
+    );
+    let Q = _.immigration.apply(admission =>
+      new AudioParam(admission, this, "Q", 1, 0.0001, 1000)
+    );
+    let gain = _.immigration.apply(admission =>
+      new AudioParam(admission, this, "gain", 0, -40, 40)
+    );
 
-  var type = "lowpass";
-  var frequency = new AudioParam(this, "frequency", 350, 10, context.sampleRate / 2);
-  var detune = new AudioParam(this, "detune", 0, -4800, 4800);
-  var Q = new AudioParam(this, "Q", 1, 0.0001, 1000);
-  var gain = new AudioParam(this, "gain", 0, -40, 40);
+    _.defineAttribute(this, "type", BiquadFilterType, type, (msg) => {
+      throw new TypeError(_.formatter.concat(this, msg));
+    });
+    _.defineAttribute(this, "frequency", "readonly", frequency, (msg) => {
+      throw new TypeError(_.formatter.concat(this, msg));
+    });
+    _.defineAttribute(this, "detune", "readonly", detune, (msg) => {
+      throw new TypeError(_.formatter.concat(this, msg));
+    });
+    _.defineAttribute(this, "Q", "readonly", Q, (msg) => {
+      throw new TypeError(_.formatter.concat(this, msg));
+    });
+    _.defineAttribute(this, "gain", "readonly", gain, (msg) => {
+      throw new TypeError(_.formatter.concat(this, msg));
+    });
+  }
 
-  _.defineAttribute(this, "type", BiquadFilterType, type, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "frequency", "readonly", frequency, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "detune", "readonly", detune, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "Q", "readonly", Q, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
-  _.defineAttribute(this, "gain", "readonly", gain, function(msg) {
-    throw new TypeError(_.formatter.concat(this, msg));
-  });
+  getFrequencyResponse() {
+    var inspector = new Inspector(this, "getFrequencyResponse", [
+      { name: "frequencyHz"  , type: "Float32Array" },
+      { name: "magResponse"  , type: "Float32Array" },
+      { name: "phaseResponse", type: "Float32Array" },
+    ]);
+
+    inspector.validateArguments(arguments, (msg) => {
+      throw new TypeError(inspector.form + "; " + msg);
+    });
+  }
 }
-_.inherits(BiquadFilterNode, BiquadFilterNodeConstructor);
 
-BiquadFilterNode.exports = BiquadFilterNodeConstructor;
 BiquadFilterNode.jsonAttrs = [ "type", "frequency", "detune", "Q", "gain" ];
 
-BiquadFilterNodeConstructor.prototype.getFrequencyResponse = function() {
-  var inspector = new Inspector(this, "getFrequencyResponse", [
-    { name: "frequencyHz"  , type: "Float32Array" },
-    { name: "magResponse"  , type: "Float32Array" },
-    { name: "phaseResponse", type: "Float32Array" },
-  ]);
-
-  inspector.validateArguments(arguments, function(msg) {
-    throw new TypeError(inspector.form + "; " + msg);
-  });
-};
-
-module.exports = WebAudioTestAPI.BiquadFilterNode = BiquadFilterNode;
+WebAudioTestAPI.BiquadFilterNode = BiquadFilterNode;
