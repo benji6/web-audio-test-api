@@ -31,11 +31,12 @@
     "url": "http://github.com/mohayonao/web-audio-test-api.git"
   },
   "scripts": {
-    "build": "npm run build-browser",
-    "build-browser": "browserify src -o build/web-audio-test-api.js",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
-    "lint": "jshint --reporter node_modules/jshint-stylish/stylish.js src test",
-    "test": "mocha",
+    "build": "npm run build-to5 && npm run build-browser",
+    "build-browser": "browserify lib -o build/web-audio-test-api.js",
+    "build-to5": "babel src --out-dir lib",
+    "cover": "babel-node $(npm bin)/isparta cover --report text --report html --report lcov $(npm bin)/_mocha",
+    "lint": "eslint src test",
+    "test": "mocha --require espower-babel/guess",
     "travis": "npm run lint && npm run cover"
   }
 }
