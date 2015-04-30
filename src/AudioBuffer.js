@@ -33,17 +33,23 @@ export default class AudioBuffer {
   }
 
   getChannelData(channel) {
-    let inspector = new Inspector(this, "getChannelData", [
-      { name: "channel", type: "number" },
-    ]);
-    inspector.validateArguments(arguments, (msg) => {
-      throw new TypeError(inspector.form + "; " + msg);
+    let inspector = new Inspector(this, "getChannelData");
+
+    inspector.assert(typeof channel === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        channel should be a number,
+        but got ${channel}
+      `);
     });
+
     inspector.assert(0 <= channel && channel < this._data.length, () => {
-      throw new TypeError(
-        inspector.form + "; channel index (" + channel + ") exceeds number of channels (#{" + this._data.length + "})"
-      );
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        channel index (${channel}) exceeds number of channels (${this._data.length})
+      `);
     });
+
     return this._data[channel];
   };
 

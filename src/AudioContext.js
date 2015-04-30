@@ -63,14 +63,30 @@ export default class AudioContext extends EventTarget {
   }
 
   createBuffer(numberOfChannels, length, sampleRate) {
-    let inspector = new Inspector(this, null, [
-      { name: "numberOfChannels", type: "number" },
-      { name: "length"          , type: "number" },
-      { name: "sampleRate"      , type: "number" },
-    ]);
+    let inspector = new Inspector(this, "createBuffer");
 
-    inspector.validateArguments(arguments, (msg) => {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(typeof numberOfChannels === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        numberOfChannels should be a number,
+        but got ${numberOfChannels}
+      `);
+    });
+
+    inspector.assert(typeof length === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        length should be a number,
+        but got ${length}
+      `);
+    });
+
+    inspector.assert(typeof sampleRate === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        sampleRate should be a number,
+        but got ${sampleRate}
+      `);
     });
 
     return _.immigration.apply(admission =>
@@ -79,14 +95,30 @@ export default class AudioContext extends EventTarget {
   }
 
   decodeAudioData(audioData, successCallback, errorCallback) {
-    let inspector = new Inspector(this, "decodeAudioData", [
-      { name: "audioData"      , type: "ArrayBuffer" },
-      { name: "successCallback", type: "function" },
-      { name: "errorCallback"  , type: "optional function" },
-    ]);
+    let inspector = new Inspector(this, "decodeAudioData");
 
-    inspector.validateArguments(arguments, (msg) => {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(audioData instanceof ArrayBuffer, () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        audioData should be an ArrayBuffer,
+        but got ${audioData}
+      `);
+    });
+
+    inspector.assert(typeof successCallback === "function", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        successCallback should be a function,
+        but gor ${successCallback}
+      `);
+    });
+
+    inspector.assert(errorCallback === undefined || typeof errorCallback === "function", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        errorCallback should be a function,
+        but gor ${errorCallback}
+      `);
     });
 
     successCallback = _.defaults(successCallback, _.NOP);

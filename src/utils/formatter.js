@@ -12,11 +12,14 @@ function methodForm(instance, methodName, argsInfo) {
   } else {
     msg += methodName;
   }
-  msg += "(";
-  msg += argsInfo.map(function(info) {
-    return info.name + ": " + info.type;
-  }).join(", ");
-  msg += ")";
+
+  if (argsInfo) {
+    msg += "(";
+    msg += argsInfo.map(function(info) {
+      return info.name + ": " + info.type;
+    }).join(", ");
+    msg += ")";
+  }
 
   return msg;
 }

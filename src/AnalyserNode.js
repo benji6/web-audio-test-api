@@ -39,33 +39,39 @@ export default class AnalyserNode extends AudioNode {
     });
   }
 
-  getFloatFrequencyData() {
-    let inspector = new Inspector(this, "getFloatFrequencyData", [
-      { name: "array", type: "Float32Array" },
-    ]);
+  getFloatFrequencyData(array) {
+    let inspector = new Inspector(this, "getFloatFrequencyData");
 
-    inspector.validateArguments(arguments, function(msg) {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(array instanceof Float32Array, () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        array should be a Float32Array,
+        but got ${array}
+      `);
     });
   }
 
-  getByteFrequencyData() {
-    let inspector = new Inspector(this, "getByteFrequencyData", [
-      { name: "array", type: "Uint8Array" },
-    ]);
+  getByteFrequencyData(array) {
+    let inspector = new Inspector(this, "getByteFrequencyData");
 
-    inspector.validateArguments(arguments, function(msg) {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(array instanceof Uint8Array, () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        array should be an Uint8Array,
+        but got ${array}
+      `);
     });
   }
 
-  getByteTimeDomainData() {
-    let inspector = new Inspector(this, "getByteTimeDomainData", [
-      { name: "array", type: "Uint8Array" },
-    ]);
+  getByteTimeDomainData(array) {
+    let inspector = new Inspector(this, "getByteTimeDomainData");
 
-    inspector.validateArguments(arguments, function(msg) {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(array instanceof Uint8Array, () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        array should be an Uint8Array,
+        but got ${array}
+      `);
     });
   }
 }

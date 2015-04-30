@@ -2,6 +2,7 @@ import inherits from "./inherits";
 import defaults from "./defaults";
 import article from "./article";
 import name from "./name";
+import plain from "./plain";
 import preventSuperCall from "./preventSuperCall";
 import toJSON from "./toJSON";
 import toMicroseconds from "./toMicroseconds";
@@ -16,6 +17,7 @@ export default {
   defaults,
   article,
   name,
+  plain,
   preventSuperCall,
   toJSON,
   toMicroseconds,

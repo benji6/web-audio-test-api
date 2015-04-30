@@ -57,36 +57,66 @@ export default class AudioBufferSourceNode extends AudioNode {
     this._firedOnEnded = false;
   }
 
-  start(when) {
-    let inspector = new Inspector(this, "start", [
-      { name: "when", type: "optional number" },
-      { name: "offset", type: "optional number" },
-      { name: "duration", type: "optional number" },
-    ]);
+  start(when, offset, duration) {
+    let inspector = new Inspector(this, "start");
 
-    inspector.validateArguments(arguments, (msg) => {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(when === undefined || typeof when === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        when should be a number,
+        but got ${when}
+      `);
     });
+
+    inspector.assert(offset === undefined || typeof offset === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        offset should be a number,
+        but got ${offset}
+      `);
+    });
+
+    inspector.assert(duration === undefined || typeof duration === "number", () => {
+      throw new TypeError(_.plain `
+        ${inspector.form};
+        duration should be a number,
+        but got ${duration}
+      `);
+    });
+
     inspector.assert(this._startTime === Infinity, () => {
-      throw new Error(inspector.form + "; cannot start more than once");
+      throw new Error(_.plain `
+        ${inspector.form};
+        cannot start more than once
+      `);
     });
 
     this._startTime = _.defaults(when, 0);
   }
 
   stop(when) {
-    let inspector = new Inspector(this, "stop", [
-      { name: "when", type: "optional number" },
-    ]);
+    let inspector = new Inspector(this, "stop");
 
-    inspector.validateArguments(arguments, (msg) => {
-      throw new TypeError(inspector.form + "; " + msg);
+    inspector.assert(when === undefined || typeof when === "number", () => {
+      throw new TypeError(_.plain `
+        #{inspector.form};
+        when should be a number,
+        but got ${when}
+      `);
     });
+
     inspector.assert(this._startTime !== Infinity, () => {
-      throw new Error(inspector.form + "; cannot call stop without calling start first");
+      throw new Error(_.plain `
+        ${inspector.form};
+        cannot call stop without calling start first
+      `);
     });
+
     inspector.assert(this._stopTime === Infinity, () => {
-      throw new Error(inspector.form + "; cannot stop more than once");
+      throw new Error(_.plain `
+        ${inspector.form};
+        cannot stop more than once
+      `);
     });
 
     this._stopTime = when;
